@@ -4,7 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const { validateEntries,validateNumbers} = require('./lib/validate');
+const { validateEntries,validateNumbers, validateEmail} = require('./lib/validate');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -30,7 +30,7 @@ const validate = require("./lib/validate");
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
 
-
+// Main Questions 
 const questions = [
     {
         type: 'input',
@@ -48,7 +48,7 @@ const questions = [
         type: 'input',
         message: 'what is your email?',
         name: 'email',
-        validate: value => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? true : 'this is not a valid email adress'
+        validate: validateEmail
     },
     {
         type: 'list',
@@ -60,14 +60,12 @@ const questions = [
         ],
         name: 'role'
     },
-
-
 ]
 
 // Manager Questions
 const managerQuestions = [
     {
-        type: 'number',
+        type: 'input',
         message: 'What is you office number',
         name: 'officeNumber',
         validate: validateNumbers
@@ -75,21 +73,39 @@ const managerQuestions = [
 ]
 
 // Intern Questions
-const internQuestions = ['intern']
+const internQuestions = [
+    {
+        type: 'input',
+        message: 'What school did you go to?',
+        name: 'school',
+        validate: validateEntries
+    }
+]
 
 // Engineer Questions
-const engineerQuestions = ['engineer']
+const engineerQuestions = [
+    {
+        type: 'input',
+        message: 'Please enter your github user name',
+        name: 'userName',
+        validate: validateEntries
+    }
+]
 
 
 async function basicQuestion() {
 
     // first round of question to answer 
     let mainAnswers = await inquirer.prompt(questions);
+    
     // figures out the next role of questions that need to be answered
     let role = await sendToNextPrompt(mainAnswers); 
 
-    console.log(role);
-    // let roleAnswers = await inquirer.prompt(role);
+    // get the role specific answer
+    let roleAnswers = await inquirer.prompt(role);
+ 
+    // all of the employee 
+    let employeeData = await {...mainAnswers, ...roleAnswers}; 
     
 }
 

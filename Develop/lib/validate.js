@@ -2,22 +2,10 @@
 // this function validates entries for the user inputs
 // and returns the value if it is valid 
 // ***************************************
-function validateEntries(value) {
-    // checks the for the name and regexes accordingly 
-    if (value === '') {
-        return 'this is not a valid input';
-    } else {
-        return true;
-    };
-}
-function validateNumbers(number) {
-    // checks the for the name and regexes accordingly 
-    if (typeof number === 'number') {
-        return true;
-    } else {
-        return 'this is not a valid input';
-    };
-}
+const validateEntries = value => (value === '')? 'this is not a valid input': true; 
 
+const validateNumbers =  value => (/^[0-9]/).test(value)? true : 'this is not a valid id number';
 
-module.exports = {validateEntries,validateNumbers}; 
+const validateEmail = value => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? true : 'this is not a valid email adress'
+
+module.exports = {validateEntries,validateNumbers, validateEmail}; 
