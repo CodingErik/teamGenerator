@@ -4,12 +4,13 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const { validateEntries } = require('./lib/validate');
+const { validateEntries,validateNumbers} = require('./lib/validate');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const validate = require("./lib/validate");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -38,10 +39,10 @@ const questions = [
         validate: validateEntries
     },
     {
-        type: 'number',
+        type: 'input',
         message: 'what is your id number?',
         name: 'id',
-        validate: validateEntries
+        validate: validateNumbers
     },
     {
         type: 'input',
@@ -63,8 +64,48 @@ const questions = [
 
 ]
 
+// Manager Questions
+const managerQuestions = [
+    {
+        type: 'number',
+        message: 'What is you office number',
+        name: 'officeNumber',
+        validate: validateNumbers
+    }
+]
+
+// Intern Questions
+const internQuestions = ['intern']
+
+// Engineer Questions
+const engineerQuestions = ['engineer']
 
 
+async function basicQuestion() {
 
-// inquirer.prompt(questions);
+    // first round of question to answer 
+    let mainAnswers = await inquirer.prompt(questions);
+    // figures out the next role of questions that need to be answered
+    let role = await sendToNextPrompt(mainAnswers); 
+
+    console.log(role);
+    // let roleAnswers = await inquirer.prompt(role);
+    
+}
+
+// this function returns the specific role questions needed for the next prompt 
+function sendToNextPrompt(employee){
+    let role = employee.role
+    switch (role) {
+        case 'Manager': return managerQuestions;
+        case 'Intern': return internQuestions;
+        case 'Engineer': return engineerQuestions;
+        default: return `Something went really wrong! did you pick a role?`;
+    }
+}
+
+
+basicQuestion(); 
+
+
 

@@ -10,7 +10,14 @@ function validateEntries(value) {
         return true;
     };
 }
+function validateNumbers(number) {
+    // checks the for the name and regexes accordingly 
+    if (typeof number === 'number') {
+        return true;
+    } else {
+        return 'this is not a valid input';
+    };
+}
 
 
-
-module.exports = {validateEntries}; 
+module.exports = {validateEntries,validateNumbers}; 
