@@ -25,3 +25,12 @@ Employee.prototype.getRole = function() {
 }
 
 module.exports = Employee; 
+// email 
+// id 
+// specific information 
+
+
+// employee -- name, id, email 
+// intern  --  name, id, email, school 
+// engineer -- name, id, email, github username 
+// manager --  name, id, email , officer number
