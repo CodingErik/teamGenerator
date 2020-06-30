@@ -4,7 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const { validateEntries,validateNumbers, validateEmail} = require('./lib/validate');
+const { validateEntries, validateNumbers, validateEmail } = require('./lib/validate');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -12,9 +12,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
 
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -26,9 +23,7 @@ const validate = require("./lib/validate");
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+const teamMembers = [];
 
 // Main Questions 
 const questions = [
@@ -92,25 +87,39 @@ const engineerQuestions = [
     }
 ]
 
+// confirm more employee 
+const moreEmployee = [
+    {
+        type: 'confirm',
+        message: 'Would you like to add more team members?',
+        name: 'moreEmployee',
+        validate: validateEmployee
+    }
+]
 
-async function basicQuestion() {
+async function Question() {
 
     // first round of question to answer 
     let mainAnswers = await inquirer.prompt(questions);
-    
+
     // figures out the next role of questions that need to be answered
-    let role = await sendToNextPrompt(mainAnswers); 
+    let role = await sendToNextPrompt(mainAnswers);
 
     // get the role specific answer
     let roleAnswers = await inquirer.prompt(role);
- 
+
     // all of the employee 
-    let employeeData = await {...mainAnswers, ...roleAnswers}; 
-    
+    let employeeData = await { ...mainAnswers, ...roleAnswers };
+
+    // push to the teamMembers array 
+    await teamMembers.push(employeeData);
+
+    // this ask if they would like to add more team members
+    let addMore = await inquirer.prompt(moreEmployee);
 }
 
 // this function returns the specific role questions needed for the next prompt 
-function sendToNextPrompt(employee){
+function sendToNextPrompt(employee) {
     let role = employee.role
     switch (role) {
         case 'Manager': return managerQuestions;
@@ -121,7 +130,7 @@ function sendToNextPrompt(employee){
 }
 
 
-basicQuestion(); 
+Question();
 
 
 

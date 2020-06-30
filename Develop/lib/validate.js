@@ -6,6 +6,8 @@ const validateEntries = value => (value === '')? 'this is not a valid input': tr
 
 const validateNumbers =  value => (/^[0-9]/).test(value)? true : 'this is not a valid id number';
 
-const validateEmail = value => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? true : 'this is not a valid email adress'
+const validateEmail = value => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) ? true : 'this is not a valid email adress';
 
-module.exports = {validateEntries,validateNumbers, validateEmail}; 
+// const validateEmployee = value => ((/^[yY|nN]$/).test(value))?  true: 'this is not a valid input';
+
+module.exports = {validateEntries,validateNumbers, validateEmail,}; 
