@@ -11,6 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
+const { clearScreenDown } = require("readline");
 
 
 // After the user has input all employees desired, call the `render` function (required
@@ -93,29 +94,39 @@ const moreEmployee = [
         type: 'confirm',
         message: 'Would you like to add more team members?',
         name: 'moreEmployee',
-        validate: validateEmployee
+        default: false
     }
 ]
 
 async function Question() {
 
-    // first round of question to answer 
-    let mainAnswers = await inquirer.prompt(questions);
+    try {
+        // first round of question to answer 
+        let mainAnswers = await inquirer.prompt(questions);
 
-    // figures out the next role of questions that need to be answered
-    let role = await sendToNextPrompt(mainAnswers);
+        // figures out the next role of questions that need to be answered
+        let role = await sendToNextPrompt(mainAnswers);
 
-    // get the role specific answer
-    let roleAnswers = await inquirer.prompt(role);
+        // get the role specific answer
+        let roleAnswers = await inquirer.prompt(role);
 
-    // all of the employee 
-    let employeeData = await { ...mainAnswers, ...roleAnswers };
+        // all of the employee 
+        let employeeData = await { ...mainAnswers, ...roleAnswers };
 
-    // push to the teamMembers array 
-    await teamMembers.push(employeeData);
+        // push to the teamMembers array 
+        await teamMembers.push(employeeData);
 
-    // this ask if they would like to add more team members
-    let addMore = await inquirer.prompt(moreEmployee);
+        // this ask if they would like to add more team members
+        let addMore = await inquirer.prompt(moreEmployee);
+
+
+        console.log(addMore.moreEmployee) 
+    }
+
+    catch {
+        console.log(err.message); 
+    }
+    
 }
 
 // this function returns the specific role questions needed for the next prompt 
@@ -127,6 +138,14 @@ function sendToNextPrompt(employee) {
         case 'Engineer': return engineerQuestions;
         default: return `Something went really wrong! did you pick a role?`;
     }
+}
+
+// restarts the whole thing again or return 
+function addMore(confirm) {
+    if (confirm) {
+        Question()
+    }
+    return;
 }
 
 
