@@ -152,6 +152,7 @@ function sendToNextPrompt(employee) {
     // testing the color ui
     // console.log('this is inside the next prompt',employee);
 
+    // based on the unique id choose the correct role 
     if(employee.role === '\u001b[31m\u001b[1mManager\u001b[22m\u001b[39m'){
         role = 'Manager'; 
     }else if (employee.role === '\u001b[32m\u001b[1mIntern\u001b[22m\u001b[39m'){
