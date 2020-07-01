@@ -14,14 +14,6 @@ const validate = require("./lib/validate");
 const { clearScreenDown } = require("readline");
 
 
-
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
 const teamMembers = [];
 
 // Main Questions 
@@ -98,35 +90,38 @@ const moreEmployee = [
 
 async function Question() {
 
+    try {
+        // first round of basic question to answer 
+        let mainAnswers = await inquirer.prompt(questions);
 
-    // first round of basic question to answer 
-    let mainAnswers = await inquirer.prompt(questions);
+        // figures out the next role of questions that need to be answered
+        let role = await sendToNextPrompt(mainAnswers);
 
-    // figures out the next role of questions that need to be answered
-    let role = await sendToNextPrompt(mainAnswers);
+        // get the role specific questions
+        let roleAnswers = await inquirer.prompt(role);
 
-    // get the role specific questions
-    let roleAnswers = await inquirer.prompt(role);
+        // all of the employee data 
+        // compiled in one  object 
+        let employeeData = await { ...mainAnswers, ...roleAnswers };
 
-    // all of the employee data 
-    // compiled in one  object 
-    let employeeData = await { ...mainAnswers, ...roleAnswers };
+        // takes the employee and builds with the appropriate constructor 
+        let employee = await buildEmployee(employeeData);
 
-    // takes the employee and builds with the appropriate constructor 
-    let employee = await buildEmployee(employeeData);
+        // push the new created employye to the teamMembers array 
+        teamMembers.push(employee);
 
-    // push the new created employye to the teamMembers array 
-    teamMembers.push(employee);
+        // console logging the array to check where we at 
+        console.log(teamMembers);
 
-    // console logging the array to check where we at 
-    console.log(teamMembers);
+        // ask if they would like to add more team members
+        let employeeAdd = await inquirer.prompt(moreEmployee);
 
-    // ask if they would like to add more team members
-    let employeeAdd = await inquirer.prompt(moreEmployee);
-
-    // validate response for the next action
-    addMoreOrRender(employeeAdd.confirm);
-
+        // validate response for the next action
+        addMoreOrRender(employeeAdd.confirm);
+    }
+    catch (err){
+        console.log(`theres was an error somewhere in the async ${err}`); 
+    }
 
 }
 
