@@ -2,6 +2,8 @@ const { Manager } = require("./lib/Manager");
 const { Engineer } = require("./lib/Engineer");
 const { Intern } = require("./lib/Intern");
 const inquirer = require("inquirer");
+const chalkPipe = require('chalk-pipe');
+const color = require('../Develop/chalk/colors'); 
 const path = require("path");
 const fs = require("fs");
 const { validateEntries, validateNumbers, validateEmail } = require('./lib/validate');
@@ -11,34 +13,34 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const { render } = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
-const { clearScreenDown } = require("readline");
-
+const { clearScreenDown } = require("readline"); 
 
 const teamMembers = [];
+
 
 // Main Questions 
 const questions = [
     {
         type: 'input',
-        message: 'what is your name?',
+        message: color.blue('what is your name?'),
         name: 'name',
         validate: validateEntries
     },
     {
         type: 'input',
-        message: 'what is your id number?',
+        message: color.blue('what is your id number?'),
         name: 'id',
         validate: validateNumbers
     },
     {
         type: 'input',
-        message: 'what is your email?',
+        message: color.blue('what is your email?'),
         name: 'email',
         validate: validateEmail
     },
     {
         type: 'list',
-        message: 'Please check your role in the company',
+        message: color.blue('Please check your role in the company'),
         choices: [
             'Manager',
             'Intern',
@@ -52,7 +54,7 @@ const questions = [
 const managerQuestions = [
     {
         type: 'input',
-        message: 'What is you office number',
+        message: color.red('What is you office number'),
         name: 'officeNumber',
         validate: validateNumbers
     }
@@ -62,7 +64,7 @@ const managerQuestions = [
 const internQuestions = [
     {
         type: 'input',
-        message: 'What school did you go to?',
+        message: color.green('What school did you go to?'),
         name: 'school',
         validate: validateEntries
     }
@@ -72,7 +74,7 @@ const internQuestions = [
 const engineerQuestions = [
     {
         type: 'input',
-        message: 'Please enter your github user name',
+        message: color.purple('Please enter your github user name'),
         name: 'gitHub',
         validate: validateEntries
     }
@@ -111,7 +113,7 @@ async function Question() {
         teamMembers.push(employee);
 
         // console logging the array to check where we at 
-        console.log(teamMembers);
+        // console.log(teamMembers);
 
         // ask if they would like to add more team members
         let employeeAdd = await inquirer.prompt(moreEmployee);
@@ -145,6 +147,9 @@ function buildEmployee(employee) {
 
 // this function returns the specific role questions needed for the next prompt 
 function sendToNextPrompt(employee) {
+
+    console.log(employee);
+    
     let role = employee.role
     switch (role) {
         case 'Manager': return managerQuestions;
