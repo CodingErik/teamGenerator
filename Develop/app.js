@@ -3,7 +3,7 @@ const { Engineer } = require("./lib/Engineer");
 const { Intern } = require("./lib/Intern");
 const inquirer = require("inquirer");
 const chalkPipe = require('chalk-pipe');
-const color = require('../Develop/chalk/colors'); 
+const color = require('../Develop/chalk/colors');
 const path = require("path");
 const fs = require("fs");
 const { validateEntries, validateNumbers, validateEmail } = require('./lib/validate');
@@ -13,7 +13,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const { render } = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
-const { clearScreenDown } = require("readline"); 
+const { clearScreenDown } = require("readline");
 
 const teamMembers = [];
 
@@ -121,8 +121,8 @@ async function Question() {
         // validate response for the next action
         addMoreOrRender(employeeAdd.confirm);
     }
-    catch (err){
-        console.log(`theres was an error somewhere in the async ${err}`); 
+    catch (err) {
+        console.log(`theres was an error somewhere in the async ${err}`);
     }
 
 }
@@ -132,7 +132,7 @@ function buildEmployee(employee) {
     let name = employee.name;
     let id = employee.id;
     let email = employee.email;
-    let role = employee.role;
+    let role = employee.role; 
 
     // checking to see the correct keys and values 
     // console.log('inside the build employee function',employee);
@@ -145,23 +145,31 @@ function buildEmployee(employee) {
     }
 }
 
+// decodes the color UI code 
+function colorDecoder(role) {
+    // based on the unique id choose the correct role 
+    if (role === '\u001b[31m\u001b[1mManager\u001b[22m\u001b[39m') {
+        return 'Manager';
+    } else if (role === '\u001b[32m\u001b[1mIntern\u001b[22m\u001b[39m') {
+        return 'Intern';
+    } else if (role === '\u001b[38;2;128;0;128m\u001b[1mEngineer\u001b[22m\u001b[39m') {
+        return 'Engineer';
+    }
+}
+
 // this function returns the specific role questions needed for the next prompt 
 function sendToNextPrompt(employee) {
-    let role;
+    // let role;
 
     // testing the color ui
     // console.log('this is inside the next prompt',employee);
 
-    // based on the unique id choose the correct role 
-    if(employee.role === '\u001b[31m\u001b[1mManager\u001b[22m\u001b[39m'){
-        role = 'Manager'; 
-    }else if (employee.role === '\u001b[32m\u001b[1mIntern\u001b[22m\u001b[39m'){
-        role = 'Intern'; 
-    }else if (employee.role === '\u001b[38;2;128;0;128m\u001b[1mEngineer\u001b[22m\u001b[39m'){
-        role = 'Engineer'; 
-    }
+    employee.role = colorDecoder(employee.role);
 
-    switch (role) {
+    // testing output
+    // console.log(employee); 
+
+    switch (employee.role) {
         case 'Manager': return managerQuestions;
         case 'Intern': return internQuestions;
         case 'Engineer': return engineerQuestions;
