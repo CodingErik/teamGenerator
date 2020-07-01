@@ -1,6 +1,6 @@
-const {Manager} = require("./lib/Manager");
-const {Engineer} = require("./lib/Engineer");
-const {Intern} = require("./lib/Intern");
+const { Manager } = require("./lib/Manager");
+const { Engineer } = require("./lib/Engineer");
+const { Intern } = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -9,7 +9,7 @@ const { validateEntries, validateNumbers, validateEmail } = require('./lib/valid
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const {render} = require("./lib/htmlRenderer");
+const { render } = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
 const { clearScreenDown } = require("readline");
 
@@ -99,52 +99,52 @@ const moreEmployee = [
 async function Question() {
 
 
-        // first round of basic question to answer 
-        let mainAnswers = await inquirer.prompt(questions);
+    // first round of basic question to answer 
+    let mainAnswers = await inquirer.prompt(questions);
 
-        // figures out the next role of questions that need to be answered
-        let role = await sendToNextPrompt(mainAnswers);
+    // figures out the next role of questions that need to be answered
+    let role = await sendToNextPrompt(mainAnswers);
 
-        // get the role specific questions
-        let roleAnswers = await inquirer.prompt(role);
+    // get the role specific questions
+    let roleAnswers = await inquirer.prompt(role);
 
-        // all of the employee data 
-        // compiled in one  object 
-        let employeeData = await { ...mainAnswers, ...roleAnswers };
+    // all of the employee data 
+    // compiled in one  object 
+    let employeeData = await { ...mainAnswers, ...roleAnswers };
 
-        // takes the employee and builds with the appropriate constructor 
-        let employee = await buildEmployee(employeeData); 
+    // takes the employee and builds with the appropriate constructor 
+    let employee = await buildEmployee(employeeData);
 
-        // push the new created employye to the teamMembers array 
-        teamMembers.push(employee);
+    // push the new created employye to the teamMembers array 
+    teamMembers.push(employee);
 
-        // console logging the array to check where we at 
-        console.log(teamMembers); 
+    // console logging the array to check where we at 
+    console.log(teamMembers);
 
-        // ask if they would like to add more team members
-        let employeeAdd = await inquirer.prompt(moreEmployee);
+    // ask if they would like to add more team members
+    let employeeAdd = await inquirer.prompt(moreEmployee);
 
-        // validate response for the next action
-        addMoreOrRender(employeeAdd.confirm);
+    // validate response for the next action
+    addMoreOrRender(employeeAdd.confirm);
 
-      
+
 }
 
 // builds a the new Employee with the specific constructor
-function buildEmployee(employee){
-    let name = employee.name; 
-    let id = employee.id; 
-    let email = employee.email; 
+function buildEmployee(employee) {
+    let name = employee.name;
+    let id = employee.id;
+    let email = employee.email;
     let role = employee.role;
 
     // checking to see the correct keys and values 
     // console.log('inside the build employee function',employee);
 
     switch (role) {
-        case 'Manager': return new Manager(name,id,email, employee.officeNumber);
-        case 'Intern': return new Intern(name,id,email, employee.school); 
-        case 'Engineer': return new Engineer(name,id,email,employee.gitHub);
-        default: return 'something went really wrong in building an employee'; 
+        case 'Manager': return new Manager(name, id, email, employee.officeNumber);
+        case 'Intern': return new Intern(name, id, email, employee.school);
+        case 'Engineer': return new Engineer(name, id, email, employee.gitHub);
+        default: return 'something went really wrong in building an employee';
     }
 }
 
@@ -164,11 +164,18 @@ function addMoreOrRender(confirm) {
     if (confirm) {
         // return back to the top of the questions are add in another employee 
         return Question();
-    } else {
-        // call the render functio and write the html file 
-        console.log(render(teamMembers));  
     }
+    // call the render functio and write the html file 
+    fs.writeFile(OUTPUT_DIR, render(teamMembers), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+    });
+    
 }
+
+
+
+
 
 
 Question();
