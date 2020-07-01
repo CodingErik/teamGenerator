@@ -8,13 +8,13 @@ class Engineer extends Employee {
         this.name = name; 
         this.id = id; 
         this.email = email; 
-        this.github = gitHub; 
+        this.gitHub = gitHub; 
         this.role = 'Engineer'; 
     }
 }
 
 Engineer.prototype.getGithub = function(){
-    return this.github; 
+    return this.gitHub; 
 }
 
 // const erik = new Engineer('erik', 23, 'erik@gmail.com', 'codingErik'); 
@@ -22,4 +22,4 @@ Engineer.prototype.getGithub = function(){
 // console.log(erik.userName); 
 
 
-module.exports = Engineer; 
+module.exports = {Engineer}; 

@@ -1,6 +1,6 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const {Manager} = require("./lib/Manager");
+const {Engineer} = require("./lib/Engineer");
+const {Intern} = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -9,14 +9,12 @@ const { validateEntries, validateNumbers, validateEmail } = require('./lib/valid
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+const {render} = require("./lib/htmlRenderer");
 const validate = require("./lib/validate");
 const { clearScreenDown } = require("readline");
 
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
@@ -83,7 +81,7 @@ const engineerQuestions = [
     {
         type: 'input',
         message: 'Please enter your github user name',
-        name: 'userName',
+        name: 'gitHub',
         validate: validateEntries
     }
 ]
@@ -93,40 +91,61 @@ const moreEmployee = [
     {
         type: 'confirm',
         message: 'Would you like to add more team members?',
-        name: 'moreEmployee',
+        name: 'confirm',
         default: false
     }
 ]
 
 async function Question() {
 
-    try {
-        // first round of question to answer 
+
+        // first round of basic question to answer 
         let mainAnswers = await inquirer.prompt(questions);
 
         // figures out the next role of questions that need to be answered
         let role = await sendToNextPrompt(mainAnswers);
 
-        // get the role specific answer
+        // get the role specific questions
         let roleAnswers = await inquirer.prompt(role);
 
-        // all of the employee 
+        // all of the employee data 
+        // compiled in one  object 
         let employeeData = await { ...mainAnswers, ...roleAnswers };
 
-        // push to the teamMembers array 
-        await teamMembers.push(employeeData);
+        // takes the employee and builds with the appropriate constructor 
+        let employee = await buildEmployee(employeeData); 
 
-        // this ask if they would like to add more team members
-        let addMore = await inquirer.prompt(moreEmployee);
+        // push the new created employye to the teamMembers array 
+        teamMembers.push(employee);
 
+        // console logging the array to check where we at 
+        console.log(teamMembers); 
 
-        console.log(addMore.moreEmployee) 
+        // ask if they would like to add more team members
+        let employeeAdd = await inquirer.prompt(moreEmployee);
+
+        // validate response for the next action
+        addMoreOrRender(employeeAdd.confirm);
+
+      
+}
+
+// builds a the new Employee with the specific constructor
+function buildEmployee(employee){
+    let name = employee.name; 
+    let id = employee.id; 
+    let email = employee.email; 
+    let role = employee.role;
+
+    // checking to see the correct keys and values 
+    // console.log('inside the build employee function',employee);
+
+    switch (role) {
+        case 'Manager': return new Manager(name,id,email, employee.officeNumber);
+        case 'Intern': return new Intern(name,id,email, employee.school); 
+        case 'Engineer': return new Engineer(name,id,email,employee.gitHub);
+        default: return 'something went really wrong in building an employee'; 
     }
-
-    catch {
-        console.log(err.message); 
-    }
-    
 }
 
 // this function returns the specific role questions needed for the next prompt 
@@ -140,12 +159,15 @@ function sendToNextPrompt(employee) {
     }
 }
 
-// restarts the whole thing again or return 
-function addMore(confirm) {
+// restarts the whole thing again or returns for the next step 
+function addMoreOrRender(confirm) {
     if (confirm) {
-        Question()
+        // return back to the top of the questions are add in another employee 
+        return Question();
+    } else {
+        // call the render functio and write the html file 
+        console.log(render(teamMembers));  
     }
-    return;
 }
 
 

@@ -1,4 +1,4 @@
-const { validateEntries, validateNumbers } = require('../lib/validate');
+const { validateEntries, validateNumbers, validateEmail } = require('../lib/validate');
 
 
 describe('this test validateEntries', () => {
@@ -30,6 +30,24 @@ describe('this test validateNumbers', () => {
         const testValue = 23;
 
         let result = validateNumbers(testValue);
+
+        expect(result).toEqual(true);
+
+    })
+})
+
+describe('this test validateEmail', () => {
+    it('should return this is not a valid input', () => {
+        const testValue = 'eri';
+
+        let result = validateEmail(testValue);
+
+        expect(result).toBe('this is not a valid email adress');
+    })
+    it('should return true if the input is and email', () => {
+        const testValue = 'erik@gmail.com';
+
+        let result = validateEmail(testValue);
 
         expect(result).toEqual(true);
 

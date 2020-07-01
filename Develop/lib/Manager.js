@@ -16,10 +16,10 @@ Manager.prototype.getRole = function() {
     return this.role; 
 }
 
-Manager.prototype.getOffice = function() {
+Manager.prototype.getOfficeNumber = function() {
     return this.officeNumber; 
 }
 
 
 
-module.exports = Manager; 
+module.exports = {Manager}; 
