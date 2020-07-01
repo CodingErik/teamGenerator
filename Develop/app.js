@@ -165,17 +165,30 @@ function addMoreOrRender(confirm) {
         // return back to the top of the questions are add in another employee 
         return Question();
     }
-    // call the render functio and write the html file 
-    fs.writeFile(OUTPUT_DIR, render(teamMembers), (err) => {
-        if (err) throw err;
-        console.log('The file has been saved!');
-    });
-    
+
+    //// checking to see if this directory exist 
+    fs.access(OUTPUT_DIR, (err) => {
+        if (err) {
+
+            // if it doesn't exist we make it and then create the file 
+            console.log(`This directory does not exist, Creating now!!!`);
+            fs.mkdir(OUTPUT_DIR, (err) => (err) ? console.log(err) : writeHTML());
+        } else {
+
+            //// else we just create the html 
+            writeHTML();
+        }
+    })
 }
 
+// function writes the html for the website 
+function writeHTML() {
+    let html = render(teamMembers)
 
-
-
+    fs.writeFile(outputPath, html, (err) => {
+        (err) ? console.log(err) : console.log('The file has been written succesfully!');
+    });
+}
 
 
 Question();
