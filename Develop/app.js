@@ -42,9 +42,9 @@ const questions = [
         type: 'list',
         message: color.blue('Please check your role in the company'),
         choices: [
-            'Manager',
-            'Intern',
-            'Engineer',
+            color.red('Manager'),
+            color.green('Intern'),
+            color.purple('Engineer'),
         ],
         name: 'role'
     },
@@ -147,10 +147,19 @@ function buildEmployee(employee) {
 
 // this function returns the specific role questions needed for the next prompt 
 function sendToNextPrompt(employee) {
+    let role;
 
-    console.log(employee);
-    
-    let role = employee.role
+    // testing the color ui
+    // console.log('this is inside the next prompt',employee);
+
+    if(employee.role === '\u001b[31m\u001b[1mManager\u001b[22m\u001b[39m'){
+        role = 'Manager'; 
+    }else if (employee.role === '\u001b[32m\u001b[1mIntern\u001b[22m\u001b[39m'){
+        role = 'Intern'; 
+    }else if (employee.role === '\u001b[38;2;128;0;128m\u001b[1mEngineer\u001b[22m\u001b[39m'){
+        role = 'Engineer'; 
+    }
+
     switch (role) {
         case 'Manager': return managerQuestions;
         case 'Intern': return internQuestions;
