@@ -1,5 +1,11 @@
 # Team Generator
 
+![GitHub Language Count](https://img.shields.io/github/languages/count/codingErik/teamGenerator?label=Languages%20Used&logo=GitHub)
+![GitHub Followers](https://img.shields.io/github/followers/codingErik?color=orange&label=Followers&logo=GitHub)
+![NPM Inquirer](https://img.shields.io/npm/v/inquirer?color=green&label=NPM%20Inquirer&logo=NPM)
+![NPM Chalk-pipe](https://img.shields.io/npm/v/chalk-pipe?color=green&label=chalk-pipe%20chalk-pipe&logo=NPM)
+
+
 
 ## Description
 
