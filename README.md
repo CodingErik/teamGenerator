@@ -1,28 +1,36 @@
 # Team Generator
 
+
+## Description
+
 Team Generator is a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. 
+The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
+
+## Table of Contents
+
+Please use the links in the table below to navigate the ReadMe contents.
+
+- [Get Started](#get-started)
+- [MVP](#MVP)
+- [Installation Requirements](#installation-requirements)
+- [Dependencies](#dependencies)
+- [Final Output](#final-output)
 
 
-## Instructions
-
-You will build a software engineering team generator command line application. The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
-
+## User Story
 ```
 As a manager
 I want to generate a webpage that displays my team's basic info
 so that I have quick access to emails and GitHub profiles
 ```
 
-How do you deliver this? Here are some guidelines:
-
-* Use the [Inquirer npm package](https://github.com/SBoudrias/Inquirer.js/) to prompt the user for their email, id, and specific information based on their role with the company. For instance, an intern may provide their school, whereas an engineer may provide their GitHub username.
-
-* Your app will run as a Node CLI to gather information about each employee.
 
 * Below is a demo of what the applicatio. 
 
 ![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
 ![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
+
+### Get Started
 
 In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
 
@@ -52,25 +60,7 @@ test/          // jest tests
 app.js         // Runs the application
 ```
 
-### Hints
-
-* Create multiple HTML templates for each type of user. For example, you could use the following templates:
-
-  * `main.html`
-
-  * `engineer.html`
-  
-  * `intern.html`
-  
-  * `manager.html`
-
-* You will want to make your methods as pure as possible. This means try to make your methods simple so that they are easier to test.
-
-* The different employee types should all inherit some methods and properties from a base class of `Employee`.
-
-* In your HTML template files, you may want to add a placeholder character that helps your program identify where the dynamic markup begins and ends.
-
-## Minimum Requirements
+### MVP
 
 * Functional application.
 
@@ -80,45 +70,6 @@ app.js         // Runs the application
 
 * All tests must pass.
 
-### Classes
-The project must have the these classes: `Employee`, `Manager`, `Engineer`,
-`Intern`. The tests for these classes in the `tests` directory must all pass.
-
-The first class is an `Employee` parent class with the following properties and
-methods:
-
-  * name
-  * id
-  * email
-  * getName()
-  * getId()
-  * getEmail()
-  * getRole() // Returns 'Employee'
-
-The other three classes will extend `Employee`. 
-
-In addition to `Employee`'s properties and methods, `Manager` will also have:
-
-  * officeNumber
-
-  * getRole() // Overridden to return 'Manager'
-
-In addition to `Employee`'s properties and methods, `Engineer` will also have:
-
-  * github  // GitHub username
-
-  * getGithub()
-
-  * getRole() // Overridden to return 'Engineer'
-
-In addition to `Employee`'s properties and methods, `Intern` will also have:
-
-  * school 
-
-  * getSchool()
-
-  * getRole() // Overridden to return 'Intern'
-
 ### User input
 
 The project must prompt the user to build an engineering team. An engineering
@@ -126,7 +77,7 @@ team consists of a manager, and any number of engineers and interns.
 
 ### Roster output
 
-The project must generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
+The project generates a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member displays the following in no particular order:
 
   * Name
 
@@ -136,10 +87,31 @@ The project must generate a `team.html` page in the `output` directory, that dis
 
   * Role-specific property (School, link to GitHub profile, or office number)
 
-## Bonus
 
-* Use validation to ensure that the information provided is in the proper expected format.
+####  Installation Requirements 
 
-* Add the application to your portfolio.
+- **Node.js** - Make sure Node.js is installed in your machine. If Node.js is not installed on your machine, [click here](https://nodejs.org/en/) to download the application.
+- **NPM Inquirer Package** - The [NPM inquirer package](https://www.npmjs.com/package/inquirer) is needed to prompt questions in the commandline.
+  - This package is already listed as a dependency in the `package.json` file, so you will only need to run the `npm install` command in your terminal to access this package.
+  
+#### Dependencies
+  
+* **Jest** - The [jest](https://jestjs.io/) is the Js testing framework that is used for unit testing in this project.
+  - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing funcitionality.
+  
+* **chalk-pipe** - [chalk-pipe]https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
+ - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
+
+## Final Output
+
+To compliment the demo video provided in the [Links for Submission Items](#links-for-submission-items) section, I included the screenshots below to demonstrate that (a) all applicable unit test passed and (b) the team.html file was generated based on user input to prompted questions.
+
+### Testing
+
+Screenshot that demonstrates all unit tests pass.
+
+![Unit Test Pass](./Assets/testConfirm/test.png)
+
+
 
 
