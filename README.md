@@ -4,7 +4,7 @@
 ![GitHub Followers](https://img.shields.io/github/followers/codingErik?color=orange&label=Followers&logo=GitHub)
 ![NPM Inquirer](https://img.shields.io/npm/v/inquirer?color=green&label=NPM%20Inquirer&logo=NPM)
 ![NPM Chalk-pipe](https://img.shields.io/npm/v/chalk-pipe?color=green&label=chalk-pipe%20chalk-pipe&logo=NPM)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FCodingErik%2FteamGenerator)
 
 
