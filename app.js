@@ -1,18 +1,18 @@
-const { Manager } = require("./lib/Manager");
-const { Engineer } = require("./lib/Engineer");
-const { Intern } = require("./lib/Intern");
+const { Manager } = require("./Develop/lib/Manager");
+const { Engineer } = require("./Develop/lib/Engineer");
+const { Intern } = require("./Develop/lib/Intern");
 const inquirer = require("inquirer");
 const chalkPipe = require('chalk-pipe');
-const color = require('../Develop/chalk/colors');
+const color = require('./Develop/chalk/colors');
 const path = require("path");
 const fs = require("fs");
-const { validateEntries, validateNumbers, validateEmail } = require('./lib/validate');
+const { validateEntries, validateNumbers, validateEmail } = require('./Develop/lib/validate');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const { render } = require("./lib/htmlRenderer");
-const validate = require("./lib/validate");
+const { render } = require("./Develop/lib/htmlRenderer");
+const validate = require("./Develop/lib/validate");
 const { clearScreenDown } = require("readline");
 
 const teamMembers = [];
