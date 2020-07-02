@@ -108,7 +108,10 @@ To compliment the demo video provided in the [Links for Submission Items](#links
 
 ### Testing
 
-Screenshot that demonstrates all unit tests pass.
+To run test a test simply run `npm run test` to run all suites or  `npm run watch` to continue to watch or run a specific suite.
+The following image shows all unit testing done.
+
+- Screenshot that demonstrates all unit tests pass.
 
 ![Unit Test Pass](./Assets/testConfirm/test.png)
 
