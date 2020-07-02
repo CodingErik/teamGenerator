@@ -12,9 +12,8 @@ Please use the links in the table below to navigate the ReadMe contents.
 
 - [Get Started] (#Get-Started)
 - [MVP] (#MVP)
-- [Links for Submission Items](#links-for-submission-items)
-- [Assignment Scope](#assignment-scope)
-- [Installation and Testing](#installation-and-testing)
+- [Installation Requirements](#Installation Requirements)
+- [Dependencies] (#Dependencies)
 - [Final Output](#final-output)
 
 
@@ -31,7 +30,7 @@ so that I have quick access to emails and GitHub profiles
 ![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
 ![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
 
-## Get Started
+### Get Started
 
 In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
 
@@ -61,7 +60,7 @@ test/          // jest tests
 app.js         // Runs the application
 ```
 
-## MVP
+### MVP
 
 * Functional application.
 
@@ -100,12 +99,6 @@ The project generates a `team.html` page in the `output` directory, that display
 * **Jest** - The [jest](https://jestjs.io/) is the JavaScript testing framework that is used for unit testing in this project.
   - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing capabilities.
 * **chalk-pipe** - link to this  
-
-  
-
-### Testing
-
-When checking to see if all applicable unit tests pass throughout the development of this application, make sure to run the `npm run test` command in your terminal each time you would like to test the application.
 
 ## Final Output
 
