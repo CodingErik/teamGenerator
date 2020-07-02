@@ -15,6 +15,7 @@ Please use the links in the table below to navigate the ReadMe contents.
 - [Installation Requirements](#installation-requirements)
 - [Dependencies](#dependencies)
 - [User input](#user-input)
+- [Roster Output](#roster-output)
 - [Final Output](#final-output)
 
 
@@ -26,7 +27,7 @@ so that I have quick access to emails and GitHub profiles
 ```
 
 
-* Below is a demo of what the applicatio. 
+* Below is a demo of what the application. 
 
 ![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
 ![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
