@@ -106,7 +106,7 @@ Expected testing out should be written directory called Output after going throu
   - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing funcitionality.
   
 * **chalk-pipe** - [chalk-pipe](https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
- - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
+  - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
 
 
 ### Testing
