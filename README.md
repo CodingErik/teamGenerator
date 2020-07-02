@@ -1,5 +1,14 @@
 # Team Generator
 
+![GitHub Language Count](https://img.shields.io/github/languages/count/codingErik/teamGenerator?label=Languages%20Used&logo=GitHub)
+![GitHub Followers](https://img.shields.io/github/followers/codingErik?color=orange&label=Followers&logo=GitHub)
+![NPM Inquirer](https://img.shields.io/npm/v/inquirer?color=green&label=NPM%20Inquirer&logo=NPM)
+![NPM Chalk-pipe](https://img.shields.io/npm/v/chalk-pipe?color=green&label=chalk-pipe%20chalk-pipe&logo=NPM)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FCodingErik%2FteamGenerator)
+
+
+
 
 ## Description
 
@@ -14,6 +23,8 @@ Please use the links in the table below to navigate the ReadMe contents.
 - [MVP](#MVP)
 - [Installation Requirements](#installation-requirements)
 - [Dependencies](#dependencies)
+- [User input](#user-input)
+- [Roster Output](#roster-output)
 - [Final Output](#final-output)
 
 
@@ -25,7 +36,7 @@ so that I have quick access to emails and GitHub profiles
 ```
 
 
-* Below is a demo of what the applicatio. 
+* Below is a demo of what the application. 
 
 ![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
 ![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
@@ -72,7 +83,7 @@ app.js         // Runs the application
 
 ### User input
 
-The project must prompt the user to build an engineering team. An engineering
+The project will prompt the user with questions to build an engineering team. An engineering
 team consists of a manager, and any number of engineers and interns.
 
 ### Roster output
@@ -86,6 +97,10 @@ The project generates a `team.html` page in the `output` directory, that display
   * ID
 
   * Role-specific property (School, link to GitHub profile, or office number)
+  
+### Final Output
+
+Expected testing out should be written directory called Output after going throught he prompt and answering all pertinent questions. 
 
 
 ####  Installation Requirements 
@@ -99,16 +114,16 @@ The project generates a `team.html` page in the `output` directory, that display
 * **Jest** - The [jest](https://jestjs.io/) is the Js testing framework that is used for unit testing in this project.
   - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing funcitionality.
   
-* **chalk-pipe** - [chalk-pipe]https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
- - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
+* **chalk-pipe** - [chalk-pipe](https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
+  - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
 
-## Final Output
-
-To compliment the demo video provided in the [Links for Submission Items](#links-for-submission-items) section, I included the screenshots below to demonstrate that (a) all applicable unit test passed and (b) the team.html file was generated based on user input to prompted questions.
 
 ### Testing
 
-Screenshot that demonstrates all unit tests pass.
+To run test a test simply run `npm run test` to run all suites or  `npm run watch` to continue to watch or run a specific suite.
+The following image shows all unit testing done.
+
+- Screenshot that demonstrates all unit tests pass.
 
 ![Unit Test Pass](./Assets/testConfirm/test.png)
 
