@@ -12,8 +12,8 @@ Please use the links in the table below to navigate the ReadMe contents.
 
 - [Get Started] (#Get-Started)
 - [MVP] (#MVP)
-- [Installation Requirements](#Installation Requirements)
-- [Dependencies] (#Dependencies)
+- [Installation Requirements](#installation-requirements)
+- [Dependencies] (#dependencies)
 - [Final Output](#final-output)
 
 
