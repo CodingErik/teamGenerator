@@ -10,10 +10,10 @@ The application will prompt the user for information about the team manager and 
 
 Please use the links in the table below to navigate the ReadMe contents.
 
-- [Get Started] (#Get-Started)
-- [MVP] (#MVP)
+- [Get Started](#get-started)
+- [MVP](#MVP)
 - [Installation Requirements](#installation-requirements)
-- [Dependencies] (#dependencies)
+- [Dependencies](#dependencies)
 - [Final Output](#final-output)
 
 
