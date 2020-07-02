@@ -96,9 +96,11 @@ The project generates a `team.html` page in the `output` directory, that display
   
 #### Dependencies
   
-* **Jest** - The [jest](https://jestjs.io/) is the JavaScript testing framework that is used for unit testing in this project.
-  - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing capabilities.
-* **chalk-pipe** - link to this  
+* **Jest** - The [jest](https://jestjs.io/) is the Js testing framework that is used for unit testing in this project.
+  - This dependency is already included in the `package.json` file, so you will only need to run the `npm install` command in your terminal to enable testing funcitionality.
+  
+* **chalk-pipe** - [chalk-pipe]https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
+ - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
 
 ## Final Output
 
