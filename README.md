@@ -14,6 +14,7 @@ Please use the links in the table below to navigate the ReadMe contents.
 - [MVP](#MVP)
 - [Installation Requirements](#installation-requirements)
 - [Dependencies](#dependencies)
+- [User input](#user-input)
 - [Final Output](#final-output)
 
 
@@ -72,7 +73,7 @@ app.js         // Runs the application
 
 ### User input
 
-The project must prompt the user to build an engineering team. An engineering
+The project will prompt the user with questions to build an engineering team. An engineering
 team consists of a manager, and any number of engineers and interns.
 
 ### Roster output
@@ -86,6 +87,10 @@ The project generates a `team.html` page in the `output` directory, that display
   * ID
 
   * Role-specific property (School, link to GitHub profile, or office number)
+  
+### Final Output
+
+Expected testing out should be written directory called Output after going throught he prompt and answering all pertinent questions. 
 
 
 ####  Installation Requirements 
@@ -101,9 +106,6 @@ The project generates a `team.html` page in the `output` directory, that display
   
 * **chalk-pipe** - [chalk-pipe](https://github.com/LitoMore/chalk-pipe) is a Js styling library used for CLI interfaces. 
  - This dependency is included in the `packege.json`. All that needs to be done is run `npm install` or `npm i` for short. 
-
-## Final Output
-
 
 
 ### Testing
